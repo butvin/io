@@ -1,0 +1,21 @@
+{
+    "name": "butvin/bj",
+    "description": "Testing task for BJ company",
+    "type": "project",
+    "minimum-stability": "beta",
+    "authors": [
+        {
+            "name": "butvin",
+            "email": "butvin.sergey@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Butvin\\": "app/",
+            "Butvin\\Core": "app/core"
+        }
+    }
+}
