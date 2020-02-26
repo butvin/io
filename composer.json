@@ -14,8 +14,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Butvin\\": "app/",
-            "Butvin\\Core": "app/core"
+            "Butvin\\": "app/http",
+            "Butvin\\Core": "app/core/"
         }
     }
 }

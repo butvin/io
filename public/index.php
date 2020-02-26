@@ -1,13 +1,28 @@
 <?php
 
 ini_set('display_errors', 1);
-error_reporting('E_ALL');
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+/**
+ * Start session
+ */
+session_start();
+
+/**
+ * Load config
+ */
+require_once __DIR__.'/../app/config.php';
+
 
 /**
  * Composer
  */
-require '../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
-var_dump($_SERVER["REQUEST_URI"]);
 
-session_start();
+
+
+require_once __DIR__.'/../app/core/bootstrap.php';
+
+
