@@ -10,7 +10,7 @@ class Route
 
     protected string $controller = 'index';
 
-    protected function parseUri( string $uri)
+    protected function dispatchUri( string $uri)
     {
 
     }
