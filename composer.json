@@ -10,12 +10,13 @@
         }
     ],
     "require": {
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "php-activerecord/php-activerecord": "^1.2"
     },
     "autoload": {
         "psr-4": {
-            "Butvin\\": "app/http",
-            "Butvin\\Core": "app/core/"
+            "Butvin\\": "app/http/",
+            "Butvin\\Core\\": "app/core/"
         }
     }
 }
