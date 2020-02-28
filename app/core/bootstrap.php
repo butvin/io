@@ -25,7 +25,7 @@ if ( $conn = \Butvin\Core\DB::getInstance() ) {
  */
 ActiveRecord\Config::initialize(function($cfg)
 {
-    $cfg->set_model_directory(MODELS_DIR);
+//    $cfg->set_model_directory(MODELS_DIR);
     $cfg->set_connections(['development' => MYSQL_CONN_DEV]);
 });
 

@@ -4,7 +4,7 @@
 namespace Butvin\Core;
 
 
-use Butvin\Controllers\TicketController;
+//use Butvin\Controllers\TicketController;
 
 class Route
 {
@@ -42,8 +42,8 @@ class Route
 
         $ctrClass = self::$ctrNamespace.$ctrClassName;
 
-        $exec = new $ctrClass();
-        $exec->$actionName();
+        $ctr = new $ctrClass;
+        $ctr->$actionName();
         //var_dump($exec, $ctrClass);
     }
 
