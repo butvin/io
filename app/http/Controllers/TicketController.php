@@ -19,7 +19,9 @@ class TicketController extends BaseController
 
     public function indexAction()
     {
-        // TODO: Implement indexAction() method.
-        var_dump('TicketController->indexAction');
+        $twig = $this->view;
+        var_dump($twig);
+
+        echo ('TicketController->indexAction');
     }
 }

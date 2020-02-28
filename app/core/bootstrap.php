@@ -3,7 +3,10 @@
 /**
  * Start the application.
  */
-$app = new \Butvin\Core\Route();
+
+use Butvin\Core\Route;
+
+$app = new Route();
 
 /**
  * Custom DB connection state
@@ -22,18 +25,8 @@ if ( $conn = \Butvin\Core\DB::getInstance() ) {
  */
 ActiveRecord\Config::initialize(function($cfg)
 {
-    $cfg->set_model_directory('.');
-    $cfg->set_connections(
-        [
-            // 'development' => MYSQL_CONN_DEV,
-            'production' => MYSQL_CONN_PROD,
-        ]
-    );
-});
-
-ActiveRecord\Config::initialize(function($cfg)
-{
-    $cfg->set_default_connection('production');
+    $cfg->set_model_directory(MODELS_DIR);
+    $cfg->set_connections(['development' => MYSQL_CONN_DEV]);
 });
 
 /**

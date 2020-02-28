@@ -28,7 +28,6 @@ class Route
     {
         $this->parseUri();
         $this->execute();
-
     }
 
     public function execute()
@@ -43,8 +42,9 @@ class Route
 
         $ctrClass = self::$ctrNamespace.$ctrClassName;
 
-        $exec = new $ctrClass;
-        var_dump($exec, $ctrClass);
+        $exec = new $ctrClass();
+        $exec->$actionName();
+        //var_dump($exec, $ctrClass);
     }
 
     public function parseUri()
