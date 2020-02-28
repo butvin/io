@@ -15,6 +15,12 @@ define ('MYSQL_CONN_PROD', 'mysql://'.DB_USER.':'.DB_PASS.'@'.DB_HOST.'/'.DB_NAM
 /**
  * Filesystem constants
  */
-define('ROOT_HTDOCS_DIR', dirname(__DIR__));
+define('ROOT_DIR', dirname(__DIR__));
+define('VIEWS_DIR', ROOT_DIR.'/resources/views');
+define('MODELS_DIR', ROOT_DIR.'/app/http/Models');
+define('CONTROLLERS_DIR', ROOT_DIR.'/app/http/Controllers');
+
+
 define('APP_DIR', __DIR__.'/http');
 define('CORE_DIR', __DIR__.'/core');
+
