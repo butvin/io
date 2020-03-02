@@ -33,42 +33,19 @@ class DB
     public static function getInstance() {
 
         if (self::$instance === null) {
-
+            $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHAR;
             try {
-                $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHAR;
-                self::$instance = new PDO($dsn, DB_USER, DB_PASS, self::$options);
-
-            } catch(PDOException $error) {
-                echo $error->getMessage();
+                self::$instance = new PDO(
+                    (string) $dsn,
+                    (string) DB_USER,
+                    (string) DB_PASS,
+                    (array) self::$options
+                );
+            } catch(PDOException $e) {
+                echo $e->getMessage();
             }
-
         }
-
         return self::$instance;
     }
-
-    /**
-    public static function setCharsetEncoding() {
-        if (self::$instance instanceof PDO && self::$instance !== null) {
-            $sql =  "SET NAMES 'utf8'; SET character_set_connection=utf8;
-                    SET character_set_client=utf8; SET character_set_results=utf8";
-            try {
-                self::$instance->exec($sql);
-            } catch(PDOException $error) {
-                echo $error->getMessage();
-            }
-        }
-    }
-
-    public static function run($sql, $args = []) {
-        if (!$args)
-        {
-            return self::getInstance()->query($sql);
-        }
-        $stmt = self::getInstance()->prepare($sql);
-        $stmt->execute($args);
-        return $stmt;
-    }
-    */
 
 }

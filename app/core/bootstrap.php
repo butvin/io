@@ -1,19 +1,27 @@
 <?php
 
 /**
+ * Twig.
+ */
+//$twigEnv = array(
+//    'debug' => true,
+//    'charset' => 'utf-8',
+//    'cache' => false
+//);
+//$loader =  new Twig\Loader\FilesystemLoader(VIEWS_DIR.'/');
+//$twig = new Twig\Environment($loader, $twigEnv);
+
+/**
  * Start the application.
  */
-
-use Butvin\Core\Route;
-
-$app = new Route();
+$app = new Butvin\Core\Route();
 
 /**
  * Custom DB connection state
  */
 if ( $conn = \Butvin\Core\DB::getInstance() ) {
     // var_dump(PDO::getAvailableDrivers());
-    // session_start();
+     session_start();
 }
 
 /**

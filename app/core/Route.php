@@ -44,6 +44,7 @@ class Route
 
         $ctr = new $ctrClass;
         $ctr->$actionName();
+        var_dump( ucfirst($this->controller));
         //var_dump($exec, $ctrClass);
     }
 

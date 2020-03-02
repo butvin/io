@@ -11,11 +11,20 @@ class Ticket extends BaseModel
 {
     public static $table_name = 'tickets';
 
-    public static function connection() {
-        static::table();
+    public static array $validates_uniqueness_of = array();
+
+    public static $primary_key = 'tickets.id';
+
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public static function table(){
-        echo get_called_class();
-    }
+//    public static function connection() {
+//        static::table();
+//    }
+//
+//    public static function table(){
+//        echo get_called_class();
+//    }
 }

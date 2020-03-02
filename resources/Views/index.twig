@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+<h1>Front</h1>
+<h2>All tickets:</h2>
+{% for d in data %}
+    <li>{{ loop.index }}</li>
+{% endfor %}
+</body>
+</html>
