@@ -1,17 +1,12 @@
 {% extends "template.twig" %}
 {% set title = 'Front page' %}
 
-
 {% block content %}
-    <h1>
-        {{ title }}
-    </h1>
-
-    <div>
-        <a href="/ticket/create/">
-            <button>Create ticket</button>
-        </a>
-    </div>
+    <h1>{{ title }}</h1>
+    <small>{{ d }}</small>
+    <p>
+        <a href="/ticket/create/"><button>Create ticket</button></a>
+    </p>
     <h2>All tickets:</h2>
     {% for ticket in data %}
         <div class="alert alert-primary" role="alert">
