@@ -1,26 +1,25 @@
 {% extends "template.twig" %}
-{% set title = 'Front' %}
+{% set title = 'Front page' %}
 
 
 {% block content %}
-<small>{{ d }}</small>
-
-    <h1>{{ title }}</h1>
+    <h1>
+        {{ title }}
+    </h1>
 
     <div>
         <a href="/ticket/create/">
             <button>Create ticket</button>
         </a>
     </div>
-
     <h2>All tickets:</h2>
     {% for ticket in data %}
-        <p style="background-color: tomato;" >
-            {{ loop.index0 + 1 }} <br>
-            {{ (ticket.user_id) }} <br>
-            {{ (ticket.status) }} <br>
-            {{ dump(ticket) }} <br>
-        </p>
+        <div class="alert alert-primary" role="alert">
+            {{  loop.index }}
+{#            {{ (ticket.user_id) }} <br>#}
+{#            {{ (ticket.status) }} <br>#}
+{#            {{ dump(ticket) }} <br>#}
+        </div>
     {% endfor %}
 
 
