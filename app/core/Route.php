@@ -1,83 +1,150 @@
 <?php
 
-
 namespace Butvin\Core;
 
-
-//use Butvin\Controllers\TicketController;
-
+/**
+ * Class Route
+ * @package Butvin\Core
+ */
 class Route
 {
-    protected string $uri;
-    static protected string $ctrNamespace = '\\Butvin\\Controllers\\';
+    /**
+     * The path to the "home" route of the application.
+     */
+    public const HOME = '/';
+
+    /**
+     * Define "home" controller and action of the application.
+     */
+    public const HOME_CONTROLLER = 'ticket';
+    public const HOME_ACTION = 'index';
+
+    /**
+     * Store in class property a request variable <$_SERVER['REQUEST_URI']>.
+     * @var string|null
+     */
+    protected ?string $uri = null;
+
+    /**
+     * This namespace is applied to your controller routes.
+     * In addition, it is set as the URL generator's root namespace.
+     * @var string
+     */
+    protected string $controllersNamespace = '\\Butvin\\Controllers\\'; // try to set 'Butvin\Controllers'
 
     protected string $controller;
     protected string $action;
-
     protected string $param;
 
-    protected array $queriesParams;
+    protected array $queryParams;
 
-
+    /**
+     * Route constructor.
+     * Application
+     * http://<HOST>/<ConrollerName>/<actionName>/<actionParametr>?<$queryParams>
+     */
     public function __construct()
     {
-        $this->uri = trim($_SERVER['REQUEST_URI']);
+        if ($this->uri === null)
+            $this->uri = trim($_SERVER['REQUEST_URI']);
+
+        if ($this->uri === Route::HOME) {
+            $this->controller =  Route::HOME_CONTROLLER;
+            $this->action = Route::HOME_ACTION;
+        }
     }
 
+    /**
+     * Access point to run the application.
+     */
     public function run()
     {
-        $this->parseUri();
-        $this->execute();
+        try {
+            $this->parseRequestUri();
+            $this->build();
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
     }
 
-    public function execute()
+    /**
+     * This method is determining necessary controller <ClassController> and
+     * uses its method action <action> with specific
+     * <param> or <queryParams> of this controller if any were requested.
+     *
+     */
+    protected function build()
     {
         $ctrClassName = ucfirst($this->controller).'Controller';
-        $actionName = mb_strtolower($this->action).'Action';
+        $actionName = mb_strtolower($this->action);
 
-        $param = $this->param;
-        $queriesParams = $this->queriesParams;
+        if( !empty($this->param) ) {
+            $param = $this->param;
+        }
 
-        var_dump($ctrClassName, $actionName, $param, $queriesParams);
+        if( !empty($this->queryParams) ) {
+            $queryParams = $this->queryParams;
+        }
 
-        $ctrClass = self::$ctrNamespace.$ctrClassName;
+        // Trying to execute application
+        try {
+            $ctrFullClassName = $this->controllersNamespace.$ctrClassName;
 
-        $ctr = new $ctrClass;
-        $ctr->$actionName();
-        var_dump( ucfirst($this->controller));
-        //var_dump($exec, $ctrClass);
+            if (! class_exists($ctrFullClassName)) {
+                Route::Page404();
+            }
+            $controllerInstance = new $ctrFullClassName;
+
+            if (! method_exists($controllerInstance, $this->action)) {
+                // $errorMsg = "Class {$controllerInstance} has no method: {$this->action}";
+                Route::Page404();
+            }
+            $controllerInstance->$actionName();
+        } catch (\Exception $e) {
+             $e->getMessage();
+        }
+
     }
 
-    public function parseUri()
+    /**
+     * Provides parsing URI from client requests for composing specific routes.
+     */
+    protected function parseRequestUri()
     {
         $routes = explode('/', $this->uri);
 
-        $this->controller = (isset($routes[1]) && !empty($routes[1])) ? $routes[1] : 'ticket';
-
-        $this->action = (isset($routes[2]) && !empty($routes[2])) ? $routes[2] : 'index';
-
+        $this->controller = (isset($routes[1]) && !empty($routes[1])) ? $routes[1] : Route::HOME_CONTROLLER;
+        $this->action = (isset($routes[2]) && !empty($routes[2])) ? $routes[2] : Route::HOME_ACTION;
         $this->param = (isset($routes[3]) && !empty($routes[3])) ? $routes[3] : '';
 
-        $queriesParams = [];
+        $queryParams = [];
         if ($queries = parse_url( $this->uri, PHP_URL_QUERY) ) {
-            parse_str($queries, $queriesParams);
-            $this->queriesParams = $queriesParams;
+            parse_str($queries, $queryParams);
+            $this->queryParams = $queryParams;
         } else {
-            $this->queriesParams = [];
+            $this->queryParams = [];
         }
-
 //        var_dump($this->controller);
 //        var_dump($this->action);
 //        var_dump($this->param);
-//        var_dump($queriesParams);
+//        var_dump($queryParams);
     }
 
+    /**
+     * Error 404 page.
+     * Optional argument message with Exception error text.
+     * @param string $message
+     */
+    public static function Page404(string $message = 'ERROR') {
+        if ( !empty($message)) {
+            echo $message.'<br>';
+        }
 
-    public function ErrorPage404() {
-        $url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
-        header('HTTP/1.1 404 Not Found');
-        header("Status: 404 Not Found");
-        header('Location:' . $url . '404');
+//        $host = 'http://'.$_SERVER['HTTP_HOST'].Route::HOME;
+//        header('HTTP/1.1 404 Not Found');
+//        header("Status: 404 Not Found");
+//        header('Location:'.$host.'404');
     }
 
 }

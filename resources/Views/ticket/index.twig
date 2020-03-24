@@ -1,0 +1,56 @@
+{% extends "template.twig" %}
+{% set title = 'Front' %}
+
+
+{% block content %}
+<small>{{ d }}</small>
+
+    <h1>{{ title }}</h1>
+
+    <div>
+        <a href="/ticket/create/">
+            <button>Create ticket</button>
+        </a>
+    </div>
+
+    <h2>All tickets:</h2>
+    {% for ticket in data %}
+        <p style="background-color: tomato;" >
+            {{ loop.index0 + 1 }} <br>
+            {{ (ticket.user_id) }} <br>
+            {{ (ticket.status) }} <br>
+            {{ dump(ticket) }} <br>
+        </p>
+    {% endfor %}
+
+
+{% endblock %}
+
+
+{#{% set start_year = date() | date('Y') %}#}
+{#{% set end_year = start_year + 5000 %}#}
+{#{% for year in start_year..end_year %}#}
+{#    {{ cycle(['odd', 'even'], loop.index0) }}#}
+{#{% endfor %}#}
+
+
+{#{% set fruits = ['apple', 'orange', 'citrus'] %}#}
+{#{% for i in 0..10 %}#}
+{#    {{ cycle(fruits, i) }}#}
+{#{% endfor %}#}
+
+
+{#RANGE#}
+{#{% for i in range(0, 10, 3) %}#}
+{#    {{ i }},#}
+{#{% endfor %}#}
+
+
+{#{% if block("footer") is defined %}#}
+{#    ...#}
+{#{% endif %}#}
+
+
+{#{% if block("footer", "common_blocks.twig") is defined %}#}
+{#    ...#}
+{#{% endif %}#}

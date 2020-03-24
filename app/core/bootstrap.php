@@ -1,25 +1,15 @@
 <?php
 
 /**
- * Twig.
- */
-//$twigEnv = array(
-//    'debug' => true,
-//    'charset' => 'utf-8',
-//    'cache' => false
-//);
-//$loader =  new Twig\Loader\FilesystemLoader(VIEWS_DIR.'/');
-//$twig = new Twig\Environment($loader, $twigEnv);
-
-/**
  * Start the application.
  */
 $app = new Butvin\Core\Route();
 
 /**
- * Custom DB connection state
+ * Custom DB class
  */
-if ( $conn = \Butvin\Core\DB::getInstance() ) {
+//if ( \Butvin\Core\DB::getInstance() ) {
+if ( \Butvin\Core\DB::getInstance() ) {
     // var_dump(PDO::getAvailableDrivers());
      session_start();
 }
@@ -33,7 +23,7 @@ if ( $conn = \Butvin\Core\DB::getInstance() ) {
  */
 ActiveRecord\Config::initialize(function($cfg)
 {
-//    $cfg->set_model_directory(MODELS_DIR);
+    // $cfg->set_model_directory(MODELS_DIR);
     $cfg->set_connections(['development' => MYSQL_CONN_DEV]);
 });
 

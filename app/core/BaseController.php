@@ -1,14 +1,16 @@
 <?php
 
-
 namespace Butvin\Core;
-
-use \Butvin\Core\BaseView;
 
 use \Twig\Environment;
 
+/**
+ * Class BaseController
+ * @package Butvin\Core
+ */
 abstract class BaseController
 {
+
     protected BaseView $view;
     protected BaseModel $model;
 
@@ -19,10 +21,13 @@ abstract class BaseController
        // toDo: code
     }
 
-    public function getTwigEnvironment() :Environment
+    /**
+     * @return \Twig\Environment
+     */
+    public function getTwigEnvironment() :\Twig\Environment
     {
         return BaseView::getTwigEnvironment();
     }
 
-    abstract public function indexAction();
+    abstract public function index();
 }
