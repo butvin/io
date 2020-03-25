@@ -2,7 +2,10 @@
 {% set title = 'page' %}
 
 {% block content %}
-
+    <h1>Users - {{ d }}</h1>
+    <h2>
+        Users form registration
+    </h2>
     {% for ticket in data %}
         {{ loop.index }}
     {% endfor %}

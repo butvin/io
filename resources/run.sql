@@ -13,14 +13,17 @@ CREATE TABLE IF NOT EXISTS tickets (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE users (
+DROP TABLE IF EXISTS users;
+CREATE TABLE IF NOT EXIST users (
   `id` INT NOT NULL AUTO_INCREMENT,
 
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  `type` varchar(50) DEFAULT NULL,
+  `password` varchar(100),
+
+  `active` tinyint(1) DEFAULT 1,
+
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `edited_at` TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
