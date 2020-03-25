@@ -5,26 +5,18 @@ namespace Butvin\Controllers;
 use \Butvin\Core\BaseController;
 use \Butvin\Core\BaseView;
 use \Butvin\Models\Ticket;
-use \Twig\Environment;
 
 /**
  * Class TicketController
+ *
+ * This controller handles the registration of new tickets
+ * as well as their validation and creation.
+ * By default this controller uses to provide this functionality.
+ *
  * @package Butvin\Controllers
  */
 class TicketController extends BaseController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Ticket Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new tickets as well as their
-    | validation and creation. By default this controller uses to
-    | provide this functionality .
-    |
-    */
-    protected static Environment $twigEnv;
-
     protected BaseView $view;
 
     public function __construct()
@@ -40,14 +32,23 @@ class TicketController extends BaseController
     public function index()
     {
         $data = [];
-
+        $data['ticketsCount'] = Ticket::count();
             if ( Ticket::count() > 0 ) {
                 try {
+
+//$t = new Ticket();
+//$t->user_id = 5;
+//$t->text = 'fdsfdsf-ddt-1';
+//$t->save();
+//var_dump($t);
+
                     $tickets = Ticket::all();
+//var_dump($tickets);
+//$data['__origin'] = ($tickets);
                     foreach ($tickets as $ticket) {
-                        $data[] = [
+                        $data['items'][] = [
                             'user_id' => $ticket->user_id,
-                            'status' => $ticket->status,
+                            'text' => $ticket->text,
                             'created_at' => $ticket->created_at,
                         ];
                     }
@@ -60,7 +61,6 @@ class TicketController extends BaseController
             $twig = parent::getTwigEnvironment();
             echo $twig->render('ticket\index.twig', ['data' => $data]);
         }
-
     }
 
     public function create()

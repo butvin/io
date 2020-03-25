@@ -1,24 +1,26 @@
 {% extends "template.twig" %}
-{% set title = 'Front page' %}
+{% set title = 'Main page' %}
+{% set ticketsNumber = data.ticketsCount %}
 
 {% block content %}
     <div class="col-12">
         <h1>{{ title }}</h1>
-        <p>
-            <a href="/ticket/create/"><button class="btn btn-primary">Create ticket</button></a>
-        </p>
-        <h2>All tickets:</h2>
-        <small>{{ d }}</small>
-        {{ dump(data) }}
+        <div>
+            <h2>
+                All tickets:<span class="badge badge-dark">{{ ticketsNumber }}</span>
+            </h2>
+        </div>
+{#        {{ dump(data) }}#}
     </div>
-    {% for ticket in data %}
+    {% for ticket in data.items %}
         <div class="row">
             <div class="col-12">
                 <div class="alert alert-primary" role="alert">
-                    {{  loop.index }}
-                    {#            {{ (ticket.user_id) }} <br>#}
-                    {#            {{ (ticket.status) }} <br>#}
-                    {#            {{ dump(ticket) }} <br>#}
+{#                    {{  loop.index }}#}
+                                {{ (ticket.user_id) }} <br>
+                                {{ (ticket.created_at) }} <br>
+                                {{ (ticket.text) }} <br>
+{#                                {{ dump(ticket) }} <br>#}
                 </div>
             </div>
         </div>

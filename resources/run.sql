@@ -5,10 +5,8 @@ USE `bj`;
 DROP TABLE IF EXISTS tickets;
 CREATE TABLE IF NOT EXISTS tickets (
   `id` INT UNSIGNED AUTO_INCREMENT,
-
-  `user_id` int,
-  `text` TEXT DEFAULT NULL,
-  `status` TINYINT(1),
+  `user_id` int not null,
+  `text` varchar (1024),
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `edited_at` TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
