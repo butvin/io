@@ -40,14 +40,15 @@ class TicketController extends BaseController
     public function index()
     {
         $data = [];
+
         try {
-            $tickets = Ticket::all();
             if ( Ticket::count() > 0 ) {
-//var_dump( Ticket::count() );
+                $tickets = Ticket::all();
                 foreach ($tickets as $ticket) {
                     $data[] = [
                         'user_id' => $ticket->user_id,
                         'status' => $ticket->status,
+                        'created_at' => $ticket->created_at,
                     ];
                 }
             }

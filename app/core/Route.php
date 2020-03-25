@@ -137,8 +137,10 @@ class Route
      * @param string $message
      */
     public static function Page404(string $message = 'ERROR') {
+        $message = 'ПИЗДА НАХУЙ БЛЯТЬ, ТАКОГО РОУТА НЕТУ!!!<br /> ПРОСТО НЕТ БЛЯТЬ!!!';
         if ( !empty($message)) {
-            echo $message.'<br>';
+            echo '<div style="background-color: tomato; color: aliceblue;">'.$message.'</div><br>';
+            die();
         }
 
 //        $host = 'http://'.$_SERVER['HTTP_HOST'].Route::HOME;

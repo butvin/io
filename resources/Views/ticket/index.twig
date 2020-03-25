@@ -2,21 +2,27 @@
 {% set title = 'Front page' %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
-    <small>{{ d }}</small>
-    <p>
-        <a href="/ticket/create/"><button>Create ticket</button></a>
-    </p>
-    <h2>All tickets:</h2>
+    <div class="col-12">
+        <h1>{{ title }}</h1>
+        <p>
+            <a href="/ticket/create/"><button class="btn btn-primary">Create ticket</button></a>
+        </p>
+        <h2>All tickets:</h2>
+        <small>{{ d }}</small>
+        {{ dump(data) }}
+    </div>
     {% for ticket in data %}
-        <div class="alert alert-primary" role="alert">
-            {{  loop.index }}
-{#            {{ (ticket.user_id) }} <br>#}
-{#            {{ (ticket.status) }} <br>#}
-{#            {{ dump(ticket) }} <br>#}
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-primary" role="alert">
+                    {{  loop.index }}
+                    {#            {{ (ticket.user_id) }} <br>#}
+                    {#            {{ (ticket.status) }} <br>#}
+                    {#            {{ dump(ticket) }} <br>#}
+                </div>
+            </div>
         </div>
     {% endfor %}
-
 
 {% endblock %}
 
