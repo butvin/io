@@ -41,20 +41,20 @@ class TicketController extends BaseController
     {
         $data = [];
 
-        try {
             if ( Ticket::count() > 0 ) {
-                $tickets = Ticket::all();
-                foreach ($tickets as $ticket) {
-                    $data[] = [
-                        'user_id' => $ticket->user_id,
-                        'status' => $ticket->status,
-                        'created_at' => $ticket->created_at,
-                    ];
+                try {
+                    $tickets = Ticket::all();
+                    foreach ($tickets as $ticket) {
+                        $data[] = [
+                            'user_id' => $ticket->user_id,
+                            'status' => $ticket->status,
+                            'created_at' => $ticket->created_at,
+                        ];
+                    }
+                } catch (\ActiveRecord\RecordNotFound $e) {
+                    $e->getMessage();
                 }
             }
-        } catch (\ActiveRecord\RecordNotFound $e) {
-           $e->getMessage();
-        }
 //var_dump($data);
         if (!empty($data)) {
             $twig = parent::getTwigEnvironment();
@@ -67,6 +67,10 @@ class TicketController extends BaseController
     {
         $twig = parent::getTwigEnvironment();
         echo $twig->render('ticket\create.twig');
+    }
+
+    public function save() {
+
     }
 
 }
