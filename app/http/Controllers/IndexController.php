@@ -4,11 +4,11 @@ namespace Butvin\Controllers;
 
 use \Butvin\Core\BaseController;
 
-class IndexController extends \Butvin\Core\BaseController
+class IndexController extends BaseController
 {
-    public function indexAction()
+    public function index()
     {
-        // TODO: Implement indexAction() method.
+        // TODO: Implement index() method.
     }
 
 }
