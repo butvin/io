@@ -1,32 +1,36 @@
+{# USER FORM REGISTRATION #}
+
 {% extends "template.twig" %}
-{% set title = 'User registration' %}
+{% set title = 'Зарегистрировать пользователся' %}
+
+
 
 {% block content %}
     <div class="row">
-        <div class="col-6">
-            <h1></h1>
-            <h2>Users form registration</h2>
+        <div class="col-4">
+            <h1>Зарегистрировать пользователся</h1>
+            <h2></h2>
             <form method="post" action="/user/save/">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailDesc">
-                    <small id="emailDesc" class="form-text text-muted">Enter your email address</small>
+                    <small id="emailDesc" class="form-text text-muted">Email address</small>
                 </div>
                 <div class="form-group">
                     <label for="userPassword">Password</label>
-                    <input type="password" class="form-control" id="userPassword">
+                    <input type="password" name="userPassword" class="form-control" id="userPassword">
                 </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+{#                <div class="form-group form-check">#}
+{#                    <input type="checkbox" class="form-check-input" id="exampleCheck1">#}
+{#                    <label class="form-check-label" for="exampleCheck1">Check me out</label>#}
+{#                </div>#}
+                <button type="submit" class="btn btn-primary">Зарегать!</button>
             </form>
         </div>
     </div>
 
-{#    {% for ticket in data %}#}
-{#        {{ loop.index }}#}
-{#    {% endfor %}#}
+    {% for user in data %}
+        {{ loop.index }}
+    {% endfor %}
 
 {% endblock %}

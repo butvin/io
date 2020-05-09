@@ -25,14 +25,17 @@ class UserController extends BaseController
     public function register()
     {
         $data = [];
-
         $twig = parent::getTwigEnvironment();
         echo $twig->render('user\register.twig', ['data' => $data]);
     }
 
+    /**
+     * User save action
+     */
     public function save()
     {
-        var_dump($_POST);
-        die('user-save-action');
+        $request = (!empty($_POST)) ? ($_POST) : -1;
+        var_dump($request);
+        die('User Save Action DIE!!!!');
     }
 }
