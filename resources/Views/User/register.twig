@@ -13,17 +13,14 @@
             <form method="post" action="/user/save/">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailDesc">
-                    <small id="emailDesc" class="form-text text-muted">Email address</small>
+                    <input type="email" name="userEmail" class="form-control" id="exampleInputEmail1" aria-describedby="emailDesc">
+                    <small id="emailDesc" class="form-text text-muted">Type your email address</small>
                 </div>
                 <div class="form-group">
                     <label for="userPassword">Password</label>
                     <input type="password" name="userPassword" class="form-control" id="userPassword">
+                    <small id="passwdDesc" class="form-text text-muted">Type your email address</small>
                 </div>
-{#                <div class="form-group form-check">#}
-{#                    <input type="checkbox" class="form-check-input" id="exampleCheck1">#}
-{#                    <label class="form-check-label" for="exampleCheck1">Check me out</label>#}
-{#                </div>#}
                 <button type="submit" class="btn btn-primary">Зарегать!</button>
             </form>
         </div>

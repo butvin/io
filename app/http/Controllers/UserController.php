@@ -26,7 +26,7 @@ class UserController extends BaseController
     {
         $data = [];
         $twig = parent::getTwigEnvironment();
-        echo $twig->render('user\register.twig', ['data' => $data]);
+        echo $twig->render('User\register.twig', ['data' => $data]);
     }
 
     /**
@@ -34,8 +34,8 @@ class UserController extends BaseController
      */
     public function save()
     {
+        var_dump($_POST);
         $request = (!empty($_POST)) ? ($_POST) : -1;
-        var_dump($request);
-        die('User Save Action DIE!!!!');
+        parent::showResultJson(false, $request );
     }
 }
